@@ -18,6 +18,8 @@
             --accent-green: #10B981;
             --accent-amber: #F59E0B;
             --border-card: #334155;
+            --hover-card-bg: #FFFFFF;
+            --hover-card-text: #0F172A;
         }
 
         * {
@@ -113,17 +115,24 @@
             width: 100%;
         }
 
+        /* Tarjetas con Hover Dinámico (Cambio a blanco + Elevación) */
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-card);
             border-radius: 12px;
             padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover {
-            border-color: var(--accent-teal);
-            transform: translateY(-4px);
+            background-color: var(--hover-card-bg);
+            border-color: #2DD4BF;
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover .card-body {
+            color: var(--hover-card-text);
         }
 
         .card-title {
@@ -139,10 +148,14 @@
         .card-title.teal { color: #2DD4BF; }
         .card-title.green { color: var(--accent-green); }
 
+        .card:hover .card-title.teal { color: #0D9488; }
+        .card:hover .card-title.green { color: #059669; }
+
         .card-body {
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.6;
+            transition: color 0.3s;
         }
 
         .slide-footer {
@@ -155,21 +168,38 @@
             color: var(--text-muted);
         }
 
+        /* Botones limpios solo con flechas */
+        .nav-controls {
+            position: fixed;
+            bottom: 25px;
+            right: 40px;
+            z-index: 100;
+            display: flex;
+            gap: 0.75rem;
+        }
+
         .btn-nav {
             background-color: var(--bg-card);
             color: var(--text-main);
             border: 1px solid var(--border-card);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
             cursor: pointer;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
         }
 
         .btn-nav:hover {
             background-color: var(--accent-teal);
             color: white;
             border-color: var(--accent-teal);
+            transform: scale(1.1);
         }
 
         .cover-slide {
@@ -192,19 +222,19 @@
         .cover-subtitle {
             font-size: 1.3rem;
             color: #2DD4BF;
-            max-width: 700px;
+            max-width: 750px;
             margin-bottom: 2rem;
             font-weight: 600;
+            line-height: 1.5;
         }
 
-        .tag-pill {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: rgba(255,255,255,0.05);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
+        .quote-box {
+            border-left: 4px solid var(--accent-teal);
+            padding-left: 1.2rem;
+            margin-top: 1rem;
+            font-style: italic;
             color: var(--text-muted);
-            border: 1px solid var(--border-card);
+            font-size: 1.05rem;
         }
     </style>
 </head>
@@ -212,25 +242,60 @@
 
 <div class="presentation-container">
 
-    <!-- SLIDE 1: PORTADA -->
+    <!-- SLIDE 1: PORTADA REVISADA -->
     <div class="slide cover-slide active">
         <div>
-            <div class="tag-pill" style="margin-bottom: 1.5rem; display: inline-block;">FIEE - UNI | Tutoría Psicopedagógica</div>
+            <div style="font-family: 'JetBrains Mono', monospace; color: #2DD4BF; font-size: 0.9rem; margin-bottom: 1rem; font-weight: 600; letter-spacing: 0.05em;">
+                OFICINA DE TUTORÍA FIEE - UNI
+            </div>
             <h1 class="cover-title">Dominando la Ansiedad<br>Académica</h1>
-            <p class="cover-subtitle">Estrategias de Autorregulación Emocional y Rendimiento Bajo Presión</p>
-            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                <span class="tag-pill">Modelo de Barlow</span>
-                <span class="tag-pill">DBT (TIPP / STOP)</span>
-                <span class="tag-pill">Mindfulness</span>
+            <p class="cover-subtitle">Herramientas de Autorregulación Emocional y Rendimiento Bajo Presión</p>
+            
+            <div class="quote-box">
+                "La meta no es eliminar los nervios ante el examen; es aprender a rendir con claridad aunque la molestia esté presente."
             </div>
         </div>
         <div class="slide-footer" style="width: 100%;">
             <span>Facilitador: Psic. Luis Arturo Mejía Soto</span>
-            <span>Usa ➔ para avanzar</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
         </div>
     </div>
 
-    <!-- SLIDE 2: REALIDAD EN LA FIEE -->
+    <!-- SLIDE 2: ÍNDICE / MAPA DE RUTA (NUEVA HOJA) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Estructura del Taller</span>
+                <h2 class="slide-title">Nuestra Ruta de Trabajo de Hoy</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="card">
+                    <div class="card-title teal">01. El Mapa de la Ansiedad</div>
+                    <div class="card-body">Comprender la neurobiología de la respuesta de alarma y desmitificar el miedo a las evaluaciones.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title teal">02. Fisiología de Emergencia</div>
+                    <div class="card-body">Técnicas inmediatas para reducir taquicardia y parálisis antes y durante la prueba (Habilidades TIPP).</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">03. Control Atencional</div>
+                    <div class="card-body">Aprender a observar pensamientos catastrofistas sin engancharse con ellos (Mindfulness y Defusión).</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">04. Tu Protocolo Personal</div>
+                    <div class="card-body">Diseño del plan de afrontamiento específico para las próximas Prácticas Calificadas y Finales.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 2 / 10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: REALIDAD EN LA FIEE -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -255,16 +320,16 @@
             </div>
         </div>
         <div class="slide-footer">
-            <span>FIEE - UNI | Taller 3: Ansiedad Académica</span>
-            <span class="slide-number">Slide 2 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 3 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 3: EL MODELO DE BARLOW -->
+    <!-- SLIDE 4: EL MODELO DE BARLOW -->
     <div class="slide">
         <div class="slide-header">
             <div>
-                <span class="badge">Modelo Científico (David H. Barlow)</span>
+                <span class="badge">Modelo Explicativo</span>
                 <h2 class="slide-title">¿Qué es realmente la Ansiedad?</h2>
             </div>
         </div>
@@ -272,25 +337,25 @@
             <div class="card-grid">
                 <div class="card">
                     <div class="card-title teal">Ansiedad (Orientada al futuro)</div>
-                    <div class="card-body">Estado afectivo caracterizado por la percepción de <strong>impredecibilidad e incontrolabilidad</strong> sobre eventos académicos futuros.</div>
+                    <div class="card-body">Estado afectivo caracterizado por la percepción de <strong>impredecibilidad e incontrolabilidad</strong> sobre eventos futuros.</div>
                 </div>
                 <div class="card">
                     <div class="card-title green">Miedo (Reacción presente)</div>
-                    <div class="card-body">Respuesta biológica inmediata de lucha/huida ante un peligro real inminente.</div>
+                    <div class="card-body">Respuesta biológica inmediata de lucha/huida ante un peligro real e inminente.</div>
                 </div>
                 <div class="card">
                     <div class="card-title amber">El Detonante Clave</div>
-                    <div class="card-body">"La ansiedad se dispara cuando mi mente interpreta que NO tengo el control sobre el examen de la próxima semana."</div>
+                    <div class="card-body">"La ansiedad se dispara cuando mi mente interpreta que NO tengo el control sobre la evaluación."</div>
                 </div>
             </div>
         </div>
         <div class="slide-footer">
-            <span>FIEE - UNI | Taller 3: Ansiedad Académica</span>
-            <span class="slide-number">Slide 3 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 4 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 4: EL TRIÁNGULO DE LA ANSIEDAD -->
+    <!-- SLIDE 5: EL TRIÁNGULO DE LA ANSIEDAD -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -306,25 +371,25 @@
                 </div>
                 <div class="card">
                     <div class="card-title teal">2. Fisiológico (Cuerpo)</div>
-                    <div class="card-body">Taquicardia, sudoración, mareo, opresión en el estómago, hiperventilación.</div>
+                    <div class="card-body">Taquicardia, sudoración, mareo, opresión en el estómago, respiración corta.</div>
                 </div>
                 <div class="card">
                     <div class="card-title green">3. Conductual (Acción)</div>
-                    <div class="card-body">Procrastinación por evitación, cerrar la guía, parálisis en plena evaluación.</div>
+                    <div class="card-body">Procrastinación por evitación, cerrar la guía de problemas, parálisis en la prueba.</div>
                 </div>
             </div>
         </div>
         <div class="slide-footer">
-            <span>Principio: Cambiar un lado del triángulo modifica los otros dos</span>
-            <span class="slide-number">Slide 4 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 5 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 5: HABILIDAD S.T.O.P. (DBT) -->
+    <!-- SLIDE 6: HABILIDAD S.T.O.P. -->
     <div class="slide">
         <div class="slide-header">
             <div>
-                <span class="badge">Herramienta DBT (Marsha Linehan)</span>
+                <span class="badge">Interrupción de Crisis</span>
                 <h2 class="slide-title">Interrumpir el Bloqueo: Habilidad S.T.O.P.</h2>
             </div>
         </div>
@@ -349,12 +414,12 @@
             </div>
         </div>
         <div class="slide-footer">
-            <span>Entrenamiento de Interrupción Conductual</span>
-            <span class="slide-number">Slide 5 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 6 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 6: FISIOLOGÍA DE EMERGENCIA (TIPP) -->
+    <!-- SLIDE 7: FISIOLOGÍA DE EMERGENCIA (TIPP) -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -379,12 +444,12 @@
             </div>
         </div>
         <div class="slide-footer">
-            <span>Mecanismo Biológico: La exhalación larga activa el Nervio Vago y reduce pulsaciones</span>
-            <span class="slide-number">Slide 6 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 7 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 7: MINDFULNESS Y DESCENTRAMIENTO -->
+    <!-- SLIDE 8: MINDFULNESS Y DESCENTRAMIENTO -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -396,11 +461,11 @@
             <div class="card-grid">
                 <div class="card">
                     <div class="card-title teal">Descentramiento (Decentering)</div>
-                    <div class="card-body">Un pensamiento es solo un evento mental que ocurre en tu cerebro, no un hecho real ni una orden.</div>
+                    <div class="card-body">Un pensamiento es solo un evento mental en tu cerebro, no una verdad objetiva ni una orden.</div>
                 </div>
                 <div class="card">
                     <div class="card-title amber">Observación Sin Pelear</div>
-                    <div class="card-body">Si aparece "No voy a aprobar", notalo: "Ahí está el pensamiento de incapacidad". Déjalo pasar sobre el río.</div>
+                    <div class="card-body">Si aparece "No voy a aprobar", notalo: "Ahí está el pensamiento de duda". Déjalo pasar sobre el río.</div>
                 </div>
                 <div class="card">
                     <div class="card-title green">Anclaje al Presente</div>
@@ -409,12 +474,12 @@
             </div>
         </div>
         <div class="slide-footer">
-            <span>FIEE - UNI | Práctica de Aceptación No Reactiva</span>
-            <span class="slide-number">Slide 7 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 8 / 10</span>
         </div>
     </div>
 
-    <!-- SLIDE 8: PROTOCOLO DE EXAMEN -->
+    <!-- SLIDE 9: PROTOCOLO DE EXAMEN -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -439,16 +504,41 @@
             </div>
         </div>
         <div class="slide-footer">
-            <span>Servicio de Tutoría y Psicopedagogía FIEE - UNI</span>
-            <span class="slide-number">Slide 8 / 8</span>
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 9 / 10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: CIERRE Y DESPEDIDA (NUEVA HOJA) -->
+    <div class="slide cover-slide" style="justify-content: space-between;">
+        <div class="slide-header" style="width: 100%;">
+            <div>
+                <span class="badge">Cierre del Taller</span>
+                <h2 class="slide-title">¡Gracias por tu Compromiso y Participación!</h2>
+            </div>
+        </div>
+        
+        <div style="margin: 2rem 0;">
+            <div class="cover-subtitle" style="font-size: 1.5rem; color: #FFFFFF; margin-bottom: 1rem;">
+                "La constancia se demuestra paso a paso. Nos vemos en las evaluaciones."
+            </div>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; line-height: 1.6;">
+                Si requieres acompañamiento individualizado o seguimiento para tus estrategias de estudio, las puertas del gabinete psicopedagógico están abiertas para ti.
+            </p>
+        </div>
+
+        <div class="slide-footer" style="width: 100%;">
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span>Contacto: tutoria.fiee@uni.edu.pe</span>
         </div>
     </div>
 
 </div>
 
-<div style="position: fixed; bottom: 20px; right: 40px; z-index: 100;">
-    <button class="btn-nav" id="prevBtn">← Anterior</button>
-    <button class="btn-nav" id="nextBtn">Siguiente →</button>
+<!-- CONTROLES SOLO CON FLECHAS -->
+<div class="nav-controls">
+    <button class="btn-nav" id="prevBtn" title="Anterior">←</button>
+    <button class="btn-nav" id="nextBtn" title="Siguiente">→</button>
 </div>
 
 <script>
