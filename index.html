@@ -17,6 +17,7 @@
             --accent-teal: #0D9488;
             --accent-green: #10B981;
             --accent-amber: #F59E0B;
+            --accent-red: #EF4444;
             --border-card: #334155;
             --hover-card-bg: #FFFFFF;
             --hover-card-text: #0F172A;
@@ -146,9 +147,11 @@
         .card-title.amber { color: var(--accent-amber); }
         .card-title.teal { color: #2DD4BF; }
         .card-title.green { color: var(--accent-green); }
+        .card-title.red { color: var(--accent-red); }
 
         .card:hover .card-title.teal { color: #0D9488; }
         .card:hover .card-title.green { color: #059669; }
+        .card:hover .card-title.red { color: #DC2626; }
 
         .card-body {
             font-size: 0.95rem;
@@ -234,6 +237,17 @@
             color: var(--text-muted);
             font-size: 1.05rem;
         }
+
+        .thanks-title {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #2DD4BF, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -270,16 +284,16 @@
         <div class="slide-content">
             <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
                 <div class="card">
-                    <div class="card-title teal">01. El Mapa de la Ansiedad</div>
-                    <div class="card-body">Comprender la neurobiología de la respuesta de alarma y desmitificar el miedo a las evaluaciones.</div>
+                    <div class="card-title teal">01. Trampas de Rendimiento</div>
+                    <div class="card-body">Identificar hábitos comunes que generan hiperestimulación y disparan picos de pánico en el aula.</div>
                 </div>
                 <div class="card">
-                    <div class="card-title teal">02. Fisiología & Anclaje Aromático</div>
-                    <div class="card-body">Técnicas inmediatas (STOP, Anclaje Sensorial y Respiración TIPP) para interrumpir la parálisis en el aula.</div>
+                    <div class="card-title teal">02. El Mapa de la Ansiedad</div>
+                    <div class="card-body">Comprender la neurobiología de la respuesta de alarma según el modelo de David Barlow.</div>
                 </div>
                 <div class="card">
-                    <div class="card-title green">03. Control Atencional</div>
-                    <div class="card-body">Aprender a observar pensamientos catastrofistas sin engancharse con ellos (Mindfulness y Defusión).</div>
+                    <div class="card-title green">03. Fisiología & Anclaje Aromático</div>
+                    <div class="card-body">Técnicas de interrupción rápida (STOP, Anclaje Sensorial y Respiración TIPP) para el aula.</div>
                 </div>
                 <div class="card">
                     <div class="card-title green">04. Tu Protocolo Personal</div>
@@ -289,11 +303,45 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 2 / 11</span>
+            <span class="slide-number">Slide 2 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 3: REALIDAD EN LA FIEE -->
+    <!-- SLIDE 3: MITOS DE DESREGULACIÓN (ENFOQUE DE ENERGIZANTES / HIPERESTIMULACIÓN) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Trampas de Rendimiento</span>
+                <h2 class="slide-title">Falsas Soluciones que Fomentan la Ansiedad</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="card">
+                    <div class="card-title red">❌ Energizantes antes del examen</div>
+                    <div class="card-body">La cafeína/taurina genera <strong>hiperestimulación</strong>. La taquicardia simulada confunde al cerebro y gatilla una crisis de pánico en plena prueba.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title red">❌ Repaso frenético en la puerta</div>
+                    <div class="card-body">Saturación atencional e hipervigilancia 2 minutos antes. Produce colapso por 'mente saturada' e incontrolabilidad al recibir la hoja.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title red">❌ Rumiar en grupo antes de entrar</div>
+                    <div class="card-body">Escuchar el pánico de otros ("el examen viene horrible") activa neuronas espejo y eleva el cortisol a niveles de parálisis.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title red">❌ Tensionarse y aguantar aire</div>
+                    <div class="card-body">Contener la respiración al trabarse envía señal de 'asfixia/peligro' al cerebro, disparando el secuestro amigdalino y la mente en blanco.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Oficina de Tutoría FIEE - UNI</span>
+            <span class="slide-number">Slide 3 / 12</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: REALIDAD EN LA FIEE -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -319,11 +367,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 3 / 11</span>
+            <span class="slide-number">Slide 4 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 4: EL MODELO DE BARLOW -->
+    <!-- SLIDE 5: EL MODELO DE BARLOW -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -349,11 +397,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 4 / 11</span>
+            <span class="slide-number">Slide 5 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 5: EL TRIÁNGULO DE LA ANSIEDAD -->
+    <!-- SLIDE 6: EL TRIÁNGULO DE LA ANSIEDAD -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -379,11 +427,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 5 / 11</span>
+            <span class="slide-number">Slide 6 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 6: HABILIDAD S.T.O.P. -->
+    <!-- SLIDE 7: HABILIDAD S.T.O.P. -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -413,11 +461,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 6 / 11</span>
+            <span class="slide-number">Slide 7 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 7: ANCLAJE SENSORIAL AROMÁTICO (NUEVA TÉCNICA CLAVE) -->
+    <!-- SLIDE 8: ANCLAJE SENSORIAL AROMÁTICO -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -443,11 +491,11 @@
         </div>
         <div class="slide-footer">
             <span>Fundamento: Estimulación del sistema límbico para frenar el secuestro amigdalino</span>
-            <span class="slide-number">Slide 7 / 11</span>
+            <span class="slide-number">Slide 8 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 8: FISIOLOGÍA DE EMERGENCIA (TIPP) -->
+    <!-- SLIDE 9: FISIOLOGÍA DE EMERGENCIA (TIPP) -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -473,11 +521,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 8 / 11</span>
+            <span class="slide-number">Slide 9 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 9: MINDFULNESS Y DESCENTRAMIENTO -->
+    <!-- SLIDE 10: MINDFULNESS Y DESCENTRAMIENTO -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -503,11 +551,11 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 9 / 11</span>
+            <span class="slide-number">Slide 10 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 10: PROTOCOLO DE EXAMEN -->
+    <!-- SLIDE 11: PROTOCOLO DE EXAMEN -->
     <div class="slide">
         <div class="slide-header">
             <div>
@@ -533,31 +581,28 @@
         </div>
         <div class="slide-footer">
             <span>Oficina de Tutoría FIEE - UNI</span>
-            <span class="slide-number">Slide 10 / 11</span>
+            <span class="slide-number">Slide 11 / 12</span>
         </div>
     </div>
 
-    <!-- SLIDE 11: CIERRE Y DESPEDIDA -->
-    <div class="slide cover-slide" style="justify-content: space-between;">
-        <div class="slide-header" style="width: 100%;">
-            <div>
-                <span class="badge">Cierre del Taller</span>
-                <h2 class="slide-title">¡Gracias por tu Compromiso y Participación!</h2>
-            </div>
-        </div>
-        
-        <div style="margin: 2rem 0;">
-            <div class="cover-subtitle" style="font-size: 1.5rem; color: #FFFFFF; margin-bottom: 1rem;">
-                "La constancia se demuestra paso a paso. Nos vemos en las evaluaciones."
-            </div>
-            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 800px; line-height: 1.6;">
-                Si requieres acompañamiento individualizado o seguimiento para tus estrategias de estudio, las puertas del gabinete psicopedagógico están abiertas para ti.
+    <!-- SLIDE 12: CIERRE Y DESPEDIDA -->
+    <div class="slide cover-slide" style="justify-content: center; align-items: center; text-align: center;">
+        <div style="max-width: 850px; width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <span class="badge" style="margin-bottom: 1.5rem;">Cierre del Taller</span>
+            
+            <h1 class="thanks-title">¡Muchas Gracias!</h1>
+            
+            <p style="font-size: 1.35rem; color: #FFFFFF; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.4;">
+                "La constancia se demuestra paso a paso. Éxitos en tus próximas evaluaciones."
             </p>
-        </div>
+            
+            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; max-width: 700px; margin-bottom: 2.5rem;">
+                Recuerda que si requieres acompañamiento individualizado o seguimiento para tus estrategias de autorregulación, la Tutoría FIEE está disponible para ti.
+            </p>
 
-        <div class="slide-footer" style="width: 100%;">
-            <span>Oficina de Tutoría FIEE - UNI</span>
-            <span>Contacto: tutoria.fiee@uni.edu.pe</span>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: #2DD4BF; border: 1px solid var(--border-card); background-color: rgba(255,255,255,0.03); padding: 0.8rem 1.8rem; border-radius: 30px;">
+                Oficina de Tutoría FIEE - UNI | Psic. Luis Arturo Mejía Soto
+            </div>
         </div>
     </div>
 
