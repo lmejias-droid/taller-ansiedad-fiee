@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominando la Ansiedad Académica | Tutoría FIEE-UNI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0F172A;
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent-teal: #0D9488;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --border-card: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .presentation-container {
+            width: 90vw;
+            max-width: 1200px;
+            height: 85vh;
+            max-height: 720px;
+            position: relative;
+            background-color: var(--bg-main);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            border: 1px solid var(--border-card);
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 3rem 4rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-card);
+            padding-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: rgba(13, 148, 136, 0.2);
+            color: #2DD4BF;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--accent-teal);
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 0.5rem;
+        }
+
+        .slide-content {
+            flex-grow: 1;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-4px);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title.amber { color: var(--accent-amber); }
+        .card-title.teal { color: #2DD4BF; }
+        .card-title.green { color: var(--accent-green); }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-card);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-nav {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-card);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-teal);
+            color: white;
+            border-color: var(--accent-teal);
+        }
+
+        .cover-slide {
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 100%);
+        }
+
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .cover-subtitle {
+            font-size: 1.3rem;
+            color: #2DD4BF;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .tag-pill {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: rgba(255,255,255,0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-card);
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation-container">
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide cover-slide active">
+        <div>
+            <div class="tag-pill" style="margin-bottom: 1.5rem; display: inline-block;">FIEE - UNI | Tutoría Psicopedagógica</div>
+            <h1 class="cover-title">Dominando la Ansiedad<br>Académica</h1>
+            <p class="cover-subtitle">Estrategias de Autorregulación Emocional y Rendimiento Bajo Presión</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <span class="tag-pill">Modelo de Barlow</span>
+                <span class="tag-pill">DBT (TIPP / STOP)</span>
+                <span class="tag-pill">Mindfulness</span>
+            </div>
+        </div>
+        <div class="slide-footer" style="width: 100%;">
+            <span>Facilitador: Psic. Luis Arturo Mejía Soto</span>
+            <span>Usa ➔ para avanzar</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: REALIDAD EN LA FIEE -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Diagnóstico Rápido</span>
+                <h2 class="slide-title">¿Te identificas con alguna de estas situaciones?</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title amber">01. Bloqueo en blanco</div>
+                    <div class="card-body">"Abro la prueba, me sale una pregunta difícil y siento que mi mente se pone en blanco inmediatamente."</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">02. Taquicardia y tensión</div>
+                    <div class="card-body">"Siento opresión en el pecho, respiración agitada o manos frías desde la noche anterior al examen."</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">03. Evitación / Procrastinación</div>
+                    <div class="card-body">"Me siento a estudiar, pero la molestia es tan alta que termino abriendo redes o limpiando mi cuarto."</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>FIEE - UNI | Taller 3: Ansiedad Académica</span>
+            <span class="slide-number">Slide 2 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: EL MODELO DE BARLOW -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Modelo Científico (David H. Barlow)</span>
+                <h2 class="slide-title">¿Qué es realmente la Ansiedad?</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title teal">Ansiedad (Orientada al futuro)</div>
+                    <div class="card-body">Estado afectivo caracterizado por la percepción de <strong>impredecibilidad e incontrolabilidad</strong> sobre eventos académicos futuros.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">Miedo (Reacción presente)</div>
+                    <div class="card-body">Respuesta biológica inmediata de lucha/huida ante un peligro real inminente.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">El Detonante Clave</div>
+                    <div class="card-body">"La ansiedad se dispara cuando mi mente interpreta que NO tengo el control sobre el examen de la próxima semana."</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>FIEE - UNI | Taller 3: Ansiedad Académica</span>
+            <span class="slide-number">Slide 3 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: EL TRIÁNGULO DE LA ANSIEDAD -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Triple Sistema de Respuesta</span>
+                <h2 class="slide-title">El Triángulo de la Ansiedad Académica</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title amber">1. Cognitivo (Pensamiento)</div>
+                    <div class="card-body">"Voy a desaprobar de nuevo", "Me van a botar de la facultad", "No sirvo para este curso".</div>
+                </div>
+                <div class="card">
+                    <div class="card-title teal">2. Fisiológico (Cuerpo)</div>
+                    <div class="card-body">Taquicardia, sudoración, mareo, opresión en el estómago, hiperventilación.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">3. Conductual (Acción)</div>
+                    <div class="card-body">Procrastinación por evitación, cerrar la guía, parálisis en plena evaluación.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Principio: Cambiar un lado del triángulo modifica los otros dos</span>
+            <span class="slide-number">Slide 4 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: HABILIDAD S.T.O.P. (DBT) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Herramienta DBT (Marsha Linehan)</span>
+                <h2 class="slide-title">Interrumpir el Bloqueo: Habilidad S.T.O.P.</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="card">
+                    <div class="card-title teal">S - Stop (Detente)</div>
+                    <div class="card-body">Suelta el lapicero. Congela tu movimiento físico inmediatamente.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title teal">T - Take a step back (Paso atrás)</div>
+                    <div class="card-body">Apoya firmemente la espalda en el respaldo de la silla. Toma distancia.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">O - Observe (Observa)</div>
+                    <div class="card-body">Nota tu cuerpo: "Hay adrenalina". Nota tus pensamientos sin creértelos.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">P - Proceed mindfully (Procede)</div>
+                    <div class="card-body">Pregúntate: "¿Cuál es la siguiente pregunta más accesible que puedo responder ahora?"</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Entrenamiento de Interrupción Conductual</span>
+            <span class="slide-number">Slide 5 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: FISIOLOGÍA DE EMERGENCIA (TIPP) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Autorregulación Fisiológica</span>
+                <h2 class="slide-title">Desacelerar el Cuerpo: Respiración TIPP</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title teal">1. Inhala (4 Segundos)</div>
+                    <div class="card-body">Inhala diafragmáticamente por la nariz sintiendo cómo se expande el vientre.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">2. Retén (2 Segundos)</div>
+                    <div class="card-body">Pausa breve sin tensión en el cuello ni en los hombros.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">3. Exhala (6 a 8 Segundos)</div>
+                    <div class="card-body">Exhala lentamente por la boca en un hilo constante de aire.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Mecanismo Biológico: La exhalación larga activa el Nervio Vago y reduce pulsaciones</span>
+            <span class="slide-number">Slide 6 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: MINDFULNESS Y DESCENTRAMIENTO -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Atención Plena & Descentramiento</span>
+                <h2 class="slide-title">Tu mente es el Río; los pensamientos son Hojas</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title teal">Descentramiento (Decentering)</div>
+                    <div class="card-body">Un pensamiento es solo un evento mental que ocurre en tu cerebro, no un hecho real ni una orden.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">Observación Sin Pelear</div>
+                    <div class="card-body">Si aparece "No voy a aprobar", notalo: "Ahí está el pensamiento de incapacidad". Déjalo pasar sobre el río.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">Anclaje al Presente</div>
+                    <div class="card-body">Siente tus pies firmes en el piso y la textura de la prueba. Tu foco vuelve a la hoja.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>FIEE - UNI | Práctica de Aceptación No Reactiva</span>
+            <span class="slide-number">Slide 7 / 8</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: PROTOCOLO DE EXAMEN -->
+    <div class="slide">
+        <div class="slide-header">
+            <div>
+                <span class="badge">Plan Personal de Afrontamiento</span>
+                <h2 class="slide-title">Mi Protocolo para el Día del Examen</h2>
+            </div>
+        </div>
+        <div class="slide-content">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title teal">1. 10 Minutos Antes</div>
+                    <div class="card-body">3 ciclos de Respiración Pautada TIPP (4-2-6) + Anclaje físico de pies en el piso.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title amber">2. Si surge Bloqueo</div>
+                    <div class="card-body">Ejecutar STOP -> Re-leer buscando el verbo de acción -> Rotar a la pregunta accesible.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title green">3. Compromiso de Salida</div>
+                    <div class="card-body">Practicaré la respiración pautada esta noche durante mi bloque de estudio activo.</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Servicio de Tutoría y Psicopedagogía FIEE - UNI</span>
+            <span class="slide-number">Slide 8 / 8</span>
+        </div>
+    </div>
+
+</div>
+
+<div style="position: fixed; bottom: 20px; right: 40px; z-index: 100;">
+    <button class="btn-nav" id="prevBtn">← Anterior</button>
+    <button class="btn-nav" id="nextBtn">Siguiente →</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        } else if (e.key === 'ArrowLeft') {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+    });
+</script>
+
+</body>
+</html>
