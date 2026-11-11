@@ -72,8 +72,9 @@
         }
 
         .slide.active {
-            opacity: 1;
-            visibility: visible;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
         }
 
         .slide-header {
@@ -426,7 +427,7 @@
                     <div class="card-title green">Elección Orientada a Valores</div>
                     <div class="card-body">
                         <em>"Si pudiera volver a ese momento sin luchar contra la emoción, ¿qué me habría gustado hacer después?"</em><br><br>
-                        No elegimos qué emoción aparece, pero sí <strong>elegimos cómo responder ante ella</strong> para seguir avanzando.
+                        No elegimos qué emoción aparece, pero sí <strong>elegimos cómo responder ante ella</strong> para seguir advancing.
                     </div>
                 </div>
             </div>
@@ -693,6 +694,9 @@
             }
         });
     }
+
+    // Inicializar slide activa
+    showSlide(currentSlide);
 
     document.getElementById('nextBtn').addEventListener('click', () => {
         currentSlide = (currentSlide + 1) % totalSlides;
