@@ -39,6 +39,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .presentation-container {
@@ -52,6 +53,7 @@
             border-radius: 16px;
             border: 1px solid var(--border-card);
             overflow: hidden;
+            z-index: 1;
         }
 
         .slide {
@@ -170,37 +172,38 @@
             color: var(--text-muted);
         }
 
+        /* CONTROLES FLOTANTES VISIBLES Y EN CAPA SUPERIOR */
         .nav-controls {
             position: fixed;
-            bottom: 25px;
+            bottom: 30px;
             right: 40px;
-            z-index: 100;
+            z-index: 9999;
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
         .btn-nav {
-            background-color: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border-card);
-            width: 45px;
-            height: 45px;
+            background-color: var(--accent-teal);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-teal);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
         .btn-nav:hover {
-            background-color: var(--accent-teal);
-            color: white;
-            border-color: var(--accent-teal);
-            transform: scale(1.1);
+            background-color: #2DD4BF;
+            color: var(--bg-main);
+            border-color: #2DD4BF;
+            transform: scale(1.15);
         }
 
         .cover-slide {
@@ -671,4 +674,46 @@
 
 </div>
 
-<!-- CONT
+<!-- CONTROLES FLOTANTES DESTACADOS -->
+<div class="nav-controls">
+    <button class="btn-nav" id="prevBtn" title="Anterior">←</button>
+    <button class="btn-nav" id="nextBtn" title="Siguiente">→</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        } else if (e.key === 'ArrowLeft') {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+    });
+</script>
+
+</body>
+</html>
